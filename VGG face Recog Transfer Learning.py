@@ -1,21 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 from keras.applications import VGG16
-
-
-# In[2]:
-
 
 #downloading VGG16 weight
 vggmodel = VGG16(weights = 'imagenet', include_top = False, input_shape = (224, 244, 3) )
-
-
-# In[3]:
-
 
 #freezing all layer
 for layer in vggmodel.layers:
@@ -23,10 +12,6 @@ for layer in vggmodel.layers:
 
 
 # # creating Fully connected layers
-
-# In[5]:
-
-
 def FClayer(model):
     newmodel = model.output
     newmodel = Flatten()(newmodel)
@@ -38,10 +23,6 @@ def FClayer(model):
 
 
 # # Adding FC onto VGG
-
-# In[6]:
-
-
 from keras.layers import Dense, Flatten
 from keras.models import Model
 
@@ -64,10 +45,6 @@ vggmodel.compile(loss = 'categorical_crossentropy',
 
 
 # ## Augmenting Images and traing the model
-
-# In[9]:
-
-
 from keras_preprocessing.image import ImageDataGenerator
 train_datagen = ImageDataGenerator(
         rescale=1./255,
@@ -90,20 +67,3 @@ vggmodel.fit(
         )
 
 vggmodel.save('vgg_face_recog.h5')
-# In[11]:
-
-
-test_set.class_indices
-
-
-# In[10]:
-
-
-vggmodel.save('vgg_face_recog.h5')
-
-
-# In[ ]:
-
-
-
-
