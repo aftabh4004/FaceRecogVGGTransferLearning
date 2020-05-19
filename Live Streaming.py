@@ -3,9 +3,6 @@
 
 # ## Live Streaming
 
-# In[ ]:
-
-
 import cv2
 import numpy as np
 import webbrowser
@@ -40,10 +37,8 @@ while True:
     image, face = face_detector(frame)
     
     face = np.expand_dims(face, axis=0)
-    #print(face.shape)
+    
     try:
-        # Pass face to prediction model
-        # "results" comprises of a tuple containing the label and the confidence value
         res = np.argmax(model.predict(face, 1, verbose = 0), axis=1)
         print(res)
         if res[0] == 0:
